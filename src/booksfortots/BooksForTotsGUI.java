@@ -39,7 +39,7 @@ public class BooksForTotsGUI extends JFrame implements ActionListener {
 		layout = new GridBagLayout();
 		constraints = new GridBagConstraints();
 
-		DatabaseConnect.connect();
+		DatabaseConnect.connect("book");
 
 		// set default constraints
 		constraints.gridx = 2;

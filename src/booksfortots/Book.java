@@ -218,12 +218,12 @@ public class Book {
 	public Book(int bookID, String bookTitle, String bookAuthor, String bookPublisher, String bookCondition,
 			String bookReleaseDate) {
 		super();
+		BookID = bookID;
 		BookTitle = bookTitle;
 		BookAuthor = bookAuthor;
 		BookPublisher = bookPublisher;
 		BookCondition = bookCondition;
 		BookReleaseDate = bookReleaseDate;
-		BookID = bookID;
 	}
 
 	/**
