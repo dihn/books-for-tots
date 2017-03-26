@@ -21,12 +21,10 @@ import javax.swing.JTextField;
 
 import database.DatabaseConnect;
 
-public class Login extends JFrame implements ActionListener {
+public class Login extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+
 	JLabel userlbl = new JLabel("Username");
 	JLabel passlbl = new JLabel("Password");
 	JTextField usertxt = new JTextField();
@@ -34,7 +32,6 @@ public class Login extends JFrame implements ActionListener {
 	JButton logbtn = new JButton("Login");
 	JButton cancelbtn = new JButton("Cancel");
 	JPanel myPanel = new JPanel();
-	
 	public GridBagConstraints constraints;
 	public GridBagLayout grid;
 	public static Login myFrame;
@@ -42,8 +39,6 @@ public class Login extends JFrame implements ActionListener {
 	JMenuBar menuBar;
 	JMenu fileMenu, helpMenu;
 	JMenuItem menuItem1, menuItem2;
-
-	// public static log l = new log();
 
 	public Login() {
 
@@ -154,26 +149,26 @@ public class Login extends JFrame implements ActionListener {
 		helpMenu.setForeground(Color.CYAN);
 
 		myPanel.setBackground(Color.darkGray);
-		
+
 		logbtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("Login!!!!");
-				
+
 				String userIn = usertxt.getText();
 				String passIn = passtxt.getText();
-				
+
 				User u = new User();
 				boolean loginCheck = u.checkLoginDetails(userIn, passIn);
-				
-				if(loginCheck == true) {
+
+				if (loginCheck == true) {
 					dispose();
 					BooksForTotsGUI gui = new BooksForTotsGUI();
 					gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				}
 			}
-			
+
 		});
 
 		c.add(myPanel);
@@ -184,9 +179,5 @@ public class Login extends JFrame implements ActionListener {
 		setLocationRelativeTo(null);
 		setResizable(false);
 	}
-
-	//public static void main(String args[]) {
-	//	myFrame = new Login();
-	//}
 
 }

@@ -19,17 +19,18 @@ public class Book {
 	/**
 	 * Get the id of a book
 	 * 
-	 * @return integer BookID - id of the book
+	 * @return integer BookID id of the book
 	 */
 	public int getBookID() {
 		return BookID;
 	}
 
 	/**
+	 * Get the id of a book at a specific index
 	 * 
 	 * @param integer
-	 *            index - the index value of the book requested
-	 * @return integer id - the id of the book requested
+	 *            index the index value of the book requested
+	 * @return integer id the id of the book requested
 	 */
 	public int getBookIDAtIndex(int index) {
 		int id = books.get(index).BookID;
@@ -40,7 +41,7 @@ public class Book {
 	 * Set the id of the book
 	 * 
 	 * @param integer
-	 *            bookID - the id to be set for the book
+	 *            bookID the id to be set for the book
 	 */
 	public void setBookID(int bookID) {
 		BookID = bookID;
@@ -49,7 +50,7 @@ public class Book {
 	/**
 	 * Get the title of the book
 	 * 
-	 * @return - String BookTitle - the title of the book
+	 * @return - String BookTitle the title of the book
 	 */
 	public String getBookTitle() {
 		return BookTitle;
@@ -59,8 +60,8 @@ public class Book {
 	 * Get the title of a book at a specific index
 	 * 
 	 * @param index
-	 *            - the index value requested
-	 * @return String title - the title of the book at the index value
+	 *            the index value requested
+	 * @return String title the title of the book at the index value
 	 */
 	public String getBookTitleAtIndex(int index) {
 		String title = books.get(index).BookTitle;
@@ -68,25 +69,30 @@ public class Book {
 	}
 
 	/**
+	 * Set the title of the book
 	 * 
 	 * @param bookTitle
+	 *            String value of the book title to be set
 	 */
 	public void setBookTitle(String bookTitle) {
 		BookTitle = bookTitle;
 	}
 
 	/**
+	 * Get the book author
 	 * 
-	 * @return
+	 * @return BookAuthor String value of the book author
 	 */
 	public String getBookAuthor() {
 		return BookAuthor;
 	}
 
 	/**
+	 * Get a book author at a specific index
 	 * 
 	 * @param index
-	 * @return
+	 *            integer value of the index
+	 * @return author String value of the author name
 	 */
 	public String getBookAuthorAtIndex(int index) {
 		String author = books.get(index).BookAuthor;
@@ -94,25 +100,30 @@ public class Book {
 	}
 
 	/**
+	 * Set the book author name
 	 * 
 	 * @param bookAuthor
+	 *            String value of the authors name
 	 */
 	public void setBookAuthor(String bookAuthor) {
 		BookAuthor = bookAuthor;
 	}
 
 	/**
+	 * Get the name of the publisher
 	 * 
-	 * @return
+	 * @return BookPublisher String value of the name of the publisher
 	 */
 	public String getBookPublisher() {
 		return BookPublisher;
 	}
 
 	/**
+	 * Get the name of a publisher at a specific index
 	 * 
 	 * @param index
-	 * @return
+	 *            integer value for the index
+	 * @return publisher String value of the publishers name
 	 */
 	public String getBookPublisherAtIndex(int index) {
 		String publisher = books.get(index).BookPublisher;
@@ -120,25 +131,30 @@ public class Book {
 	}
 
 	/**
+	 * Set the book publisher name
 	 * 
 	 * @param bookPublisher
+	 *            String value of the publishers name
 	 */
 	public void setBookPublisher(String bookPublisher) {
 		BookPublisher = bookPublisher;
 	}
 
 	/**
+	 * Get the condition of a book
 	 * 
-	 * @return
+	 * @return BookCondition String value of the condition of the book
 	 */
 	public String getBookCondition() {
 		return BookCondition;
 	}
 
 	/**
+	 * Get the condition of a book at a specific index
 	 * 
 	 * @param index
-	 * @return
+	 *            integer value for the index
+	 * @return conditionstr String value of the condition
 	 */
 	public String getBookConditionAtIndex(int index) {
 		String conditionstr = books.get(index).BookCondition;
@@ -146,25 +162,30 @@ public class Book {
 	}
 
 	/**
+	 * Set the condition of a book
 	 * 
 	 * @param bookCondition
+	 *            String value for the condition of a book
 	 */
 	public void setBookCondition(String bookCondition) {
 		BookCondition = bookCondition;
 	}
 
 	/**
+	 * Get the book release date
 	 * 
-	 * @return
+	 * @return BookReleaseDate String value of the book release date
 	 */
 	public String getBookReleaseDate() {
 		return BookReleaseDate;
 	}
 
 	/**
+	 * Get the book release date at a specific index
 	 * 
 	 * @param index
-	 * @return
+	 *            integer value of the index
+	 * @return release String value of the release date
 	 */
 	public String getBookReleaseDateAtIndex(int index) {
 		String release = books.get(index).BookReleaseDate;
@@ -172,16 +193,20 @@ public class Book {
 	}
 
 	/**
+	 * Set the book release date
 	 * 
 	 * @param bookReleaseDate
+	 *            String value of the book release date
 	 */
 	public void setBookReleaseDate(String bookReleaseDate) {
 		BookReleaseDate = bookReleaseDate;
 	}
 
 	/**
+	 * Add a book
 	 * 
 	 * @param book
+	 *            A book object
 	 */
 	public void addBook(Book book) {
 		Book.numBooks++;
@@ -189,31 +214,29 @@ public class Book {
 	}
 
 	/**
+	 * Get the number of books currently in the library
 	 * 
-	 * @return
+	 * @return integer value of the number of books held in the library
 	 */
 	public int getNumBooks() {
 		return numBooks;
 	}
 
 	/**
-	 * 
-	 */
-	public void printBooks() {
-		for (int i = 0; i < books.toArray().length; i++) {
-			System.out.println(
-					"Book Title: " + books.get(i).getBookTitle() + "\nAuthor: " + books.get(i).getBookAuthor());
-		}
-	}
-
-	/**
+	 * Book object
 	 * 
 	 * @param bookID
+	 *            integer value of the book id
 	 * @param bookTitle
+	 *            String value of the book title
 	 * @param bookAuthor
+	 *            String value of the book author
 	 * @param bookPublisher
+	 *            String value of the book publisher
 	 * @param bookCondition
+	 *            String value of the book condition
 	 * @param bookReleaseDate
+	 *            String value of the book release date
 	 */
 	public Book(int bookID, String bookTitle, String bookAuthor, String bookPublisher, String bookCondition,
 			String bookReleaseDate) {
@@ -227,7 +250,7 @@ public class Book {
 	}
 
 	/**
-	 * 
+	 * Blank implementation of a book object
 	 */
 	public Book() {
 	}

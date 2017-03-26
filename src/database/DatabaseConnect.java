@@ -16,7 +16,8 @@ public class DatabaseConnect {
 	private static String password = "";
 
 	/**
-	 * Connect to the database
+	 * Connect to a specific type of database based on a String value
+	 * @param database string value of the type of database to be connected to
 	 */
 	public static void connect(String database) {
 		if(database.equals("book")) {

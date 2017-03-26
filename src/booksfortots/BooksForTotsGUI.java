@@ -18,11 +18,8 @@ import javax.swing.JTextField;
 
 import database.DatabaseConnect;
 
-public class BooksForTotsGUI extends JFrame implements ActionListener {
+public class BooksForTotsGUI extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static GridBagLayout layout;
 	private static GridBagConstraints constraints;
@@ -215,11 +212,5 @@ public class BooksForTotsGUI extends JFrame implements ActionListener {
 		this.add(mainPanel);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 }
