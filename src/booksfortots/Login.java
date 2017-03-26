@@ -21,15 +21,12 @@ import javax.swing.JTextField;
 
 import database.DatabaseConnect;
 
-public class Login extends JFrame {
+public class Login extends JFrame implements ActionListener {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// JMenuBar bar = new JMenuBar();
-	// JMenu file = new JMenu("File");
-	// JMenu help = new JMenu("Help");
 	JLabel userlbl = new JLabel("Username");
 	JLabel passlbl = new JLabel("Password");
 	JTextField usertxt = new JTextField();
@@ -37,7 +34,7 @@ public class Login extends JFrame {
 	JButton logbtn = new JButton("Login");
 	JButton cancelbtn = new JButton("Cancel");
 	JPanel myPanel = new JPanel();
-	// public Container c;
+	
 	public GridBagConstraints constraints;
 	public GridBagLayout grid;
 	public static Login myFrame;
