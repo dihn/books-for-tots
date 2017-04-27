@@ -1,5 +1,8 @@
 package booksfortots;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -211,6 +214,30 @@ public class Book {
 	public void addBook(Book book) {
 		Book.numBooks++;
 		books.add(book);
+	}
+	
+	public void addNewBook(String bookTitle, String bookAuthor, String bookPublisher, String bookCondition,
+			String bookReleaseDate) {
+		try{
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/booksfortots", "root", "");
+			String query = "INSERT into books (BookTitle, BookAuthor, BookPublisher, BookCondition, BookReleaseDate)"
+					+ " values (?, ?, ?, ?, ?)";
+			
+			// create the mysql instert preparedstatement
+			PreparedStatement prepareStmt = conn.prepareStatement(query);
+			prepareStmt.setString(1, bookTitle);
+			prepareStmt.setString(2, bookAuthor);
+			prepareStmt.setString(3, bookPublisher);
+			prepareStmt.setString(4, bookCondition);
+			prepareStmt.setString(5, bookReleaseDate);
+			
+			prepareStmt.execute();
+			
+			conn.close();
+		} catch (Exception e) {
+			System.err.println("Exception!");
+			System.err.println(e.getMessage());
+		}
 	}
 
 	/**

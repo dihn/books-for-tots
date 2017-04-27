@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -18,18 +19,15 @@ import javax.swing.JTextField;
 
 import database.DatabaseConnect;
 
-public class BooksForTotsGUI extends JFrame {
-
+public class AddBookGUI extends JFrame{
+	
 	private static final long serialVersionUID = 1L;
 	private static GridBagLayout layout;
 	private static GridBagConstraints constraints;
-
+	
 	public static JTextField authortext, titletext, releasetext;
-	public static Book b = new Book();
-
-	public int currentBookNum = 0;
-
-	public BooksForTotsGUI() {
+	
+	public AddBookGUI() {
 		this.setTitle("Books For Tots");
 		this.setLocationRelativeTo(null);
 		this.setSize(500, 500);
@@ -59,61 +57,37 @@ public class BooksForTotsGUI extends JFrame {
 		JLabel releaselbl = new JLabel("Release Date");
 		JLabel loanlbl = new JLabel("Loan Date");
 		JLabel returnlbl = new JLabel("Return Date");
-
+		
 		JTextField titletext = new JTextField(30);
-		titletext.setText(b.getBookTitleAtIndex(currentBookNum));
 		JTextField authortext = new JTextField(30);
-		authortext.setText(b.getBookAuthorAtIndex(currentBookNum));
 		JTextField releasetext = new JTextField(30);
-		releasetext.setText(b.getBookReleaseDateAtIndex(currentBookNum));
 		JTextField loantext = new JTextField(30);
 		JTextField returntext = new JTextField(30);
 
 		String[] conditionOptions = { "Excellent", "Good", "Poor" };
 		JComboBox<String> conditionbox = new JComboBox<String>(conditionOptions);
-		String item = b.getBookConditionAtIndex(currentBookNum);
-		conditionbox.setSelectedItem(item);
-
-		JButton prevbtn = new JButton("<");
-		prevbtn.addActionListener(new ActionListener() {
+		
+		JButton addBtn = new JButton("Add Book");
+		addBtn.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (currentBookNum > 0) {
-					currentBookNum--;
-					titletext.setText(b.getBookTitleAtIndex(currentBookNum));
-					authortext.setText(b.getBookAuthorAtIndex(currentBookNum));
-					releasetext.setText(b.getBookReleaseDateAtIndex(currentBookNum));
-					String item = b.getBookConditionAtIndex(currentBookNum);
-					conditionbox.setSelectedItem(item);
-				} else {
-					JOptionPane.showMessageDialog(mainPanel, "Reached the lowest number of books", "Error",
-							JOptionPane.WARNING_MESSAGE);
-				}
+				String bookTitle, bookAuthor, bookPublisher, bookCondition, bookReleaseDate;
+				bookTitle = titletext.getText();
+				bookAuthor = authortext.getText();
+				bookPublisher = releasetext.getText();
+				bookCondition = "Excellent";
+				bookReleaseDate = releasetext.getText();
+				Book b = new Book();
+				b.addNewBook(bookTitle, bookAuthor, bookPublisher, bookCondition, bookReleaseDate);
+				JOptionPane.showMessageDialog(mainPanel, "Book added","Book Added", JOptionPane.PLAIN_MESSAGE);
+				BooksForTotsGUI gui = new BooksForTotsGUI();
+				gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				dispose();
 			}
-
+			
 		});
-
-		JButton nextbtn = new JButton(">");
-		nextbtn.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (currentBookNum < b.getNumBooks() - 1) {
-					currentBookNum++;
-					titletext.setText(b.getBookTitleAtIndex(currentBookNum));
-					authortext.setText(b.getBookAuthorAtIndex(currentBookNum));
-					releasetext.setText(b.getBookReleaseDateAtIndex(currentBookNum));
-					String item = b.getBookConditionAtIndex(currentBookNum);
-					conditionbox.setSelectedItem(item);
-				} else {
-					JOptionPane.showMessageDialog(mainPanel, "Reached the highest number of books", "Error",
-							JOptionPane.WARNING_MESSAGE);
-				}
-			}
-
-		});
-
+		
 		JMenuBar menuBar;
 		JMenu fileMenu, helpMenu;
 		JMenuItem exitItem, addBookItem, aboutItem;
@@ -128,9 +102,7 @@ public class BooksForTotsGUI extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				AddBookGUI gui = new AddBookGUI();
-				gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				dispose();
+				
 			}
 			
 		});
@@ -154,7 +126,7 @@ public class BooksForTotsGUI extends JFrame {
 
 		helpMenu = new JMenu("Help");
 		menuBar.add(helpMenu);
-
+		
 		aboutItem = new JMenuItem("About");
 		helpMenu.add(aboutItem);
 		aboutItem.addActionListener(new ActionListener() {
@@ -211,16 +183,13 @@ public class BooksForTotsGUI extends JFrame {
 		constraints.gridwidth = 1;
 		constraints.gridx = 2;
 		constraints.gridy = 7;
-		mainPanel.add(prevbtn, constraints);
-		constraints.gridwidth = 20;
-		constraints.gridx = 5;
-		mainPanel.add(nextbtn, constraints);
-		constraints.gridwidth = 1;
-		constraints.gridx = 2;
-		constraints.gridy = 8;
+		mainPanel.add(addBtn,constraints);
+		
 
 		this.add(mainPanel);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
+		
 	}
+
 }
