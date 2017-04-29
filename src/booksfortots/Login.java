@@ -154,8 +154,6 @@ public class Login extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("Login!!!!");
-
 				String userIn = usertxt.getText();
 				String passIn = passtxt.getText();
 

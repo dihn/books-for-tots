@@ -90,8 +90,10 @@ public class User {
 				return true;
 			} else if (username.equals(users.get(i).userName) && !password.equals(users.get(i).userPass)) {
 				System.out.println("Login Error!");
+				return false;
 			} else if (!username.equals(users.get(i).userName) && password.equals(users.get(i).userPass)) {
 				System.out.println("Login Error!");
+				return false;
 			}
 		}
 		return false;

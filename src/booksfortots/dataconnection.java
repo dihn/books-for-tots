@@ -1,3 +1,4 @@
+/**
 package booksfortots;
 
 import java.sql.Connection;
@@ -14,9 +15,7 @@ public class dataconnection {
 	public static String username;
 	public static String password2;
 
-	/**
-	 * Connect to the database
-	 */
+	
 	public static void connect() {
 		try {
 			Connection conn = DriverManager.getConnection(DB_URL, user, password);
@@ -44,3 +43,4 @@ public class dataconnection {
 	}
 
 }
+*/
