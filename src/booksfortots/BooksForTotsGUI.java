@@ -116,7 +116,7 @@ public class BooksForTotsGUI extends JFrame {
 
 		JMenuBar menuBar;
 		JMenu fileMenu, helpMenu;
-		JMenuItem exitItem, addBookItem, aboutItem;
+		JMenuItem exitItem, addBookItem, aboutItem, deleteBookItem;
 
 		menuBar = new JMenuBar();
 
@@ -130,11 +130,28 @@ public class BooksForTotsGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				AddBookGUI gui = new AddBookGUI();
 				gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				b.emptyBookList();
 				dispose();
 			}
 			
 		});
 		fileMenu.add(addBookItem);
+		
+		deleteBookItem = new JMenuItem("Delete Book");
+		deleteBookItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String titleToDelete = titletext.getText();
+				System.out.println(titleToDelete);
+				b.deleteBook(titleToDelete);
+				b.emptyBookList();
+				BooksForTotsGUI gui = new BooksForTotsGUI();
+				gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			}
+			
+		});
+		fileMenu.add(deleteBookItem);
 
 		exitItem = new JMenuItem("Exit");
 		exitItem.addActionListener(new ActionListener() {

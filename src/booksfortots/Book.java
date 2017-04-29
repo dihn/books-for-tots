@@ -14,9 +14,6 @@ public class Book {
 	private String BookCondition;
 	private String BookReleaseDate;
 	private int BookID;
-
-	private static int numBooks;
-
 	private static List<Book> books = new ArrayList<Book>();
 
 	/**
@@ -212,12 +209,20 @@ public class Book {
 	 *            A book object
 	 */
 	public void addBook(Book book) {
-		Book.numBooks++;
+		//Book.numBooks++;
 		books.add(book);
 	}
 	
+	/**
+	 * 
+	 * @param bookTitle
+	 * @param bookAuthor
+	 * @param bookPublisher
+	 * @param bookCondition
+	 * @param bookReleaseDate
+	 */
 	public void addNewBook(String bookTitle, String bookAuthor, String bookPublisher, String bookCondition,
-			String bookReleaseDate) {
+			String bookReleaseDate){
 		try{
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/booksfortots", "root", "");
 			String query = "INSERT into books (BookTitle, BookAuthor, BookPublisher, BookCondition, BookReleaseDate)"
@@ -239,6 +244,35 @@ public class Book {
 			System.err.println(e.getMessage());
 		}
 	}
+	
+	/**
+	 * 
+	 * @param title
+	 */
+	public void deleteBook(String title){
+		try{
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/booksfortots", "root", "");
+			String query = "DELETE FROM books WHERE BookTitle = ?";
+			
+			// create the mysql instert preparedstatement
+			PreparedStatement prepareStmt = conn.prepareStatement(query);
+			prepareStmt.setString(1, title);
+		
+			prepareStmt.execute();
+			
+			conn.close();
+		} catch (Exception e) {
+			System.err.println("Exception!");
+			System.err.println(e.getMessage());
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	public void emptyBookList() {
+		books.clear();
+	}
 
 	/**
 	 * Get the number of books currently in the library
@@ -246,7 +280,7 @@ public class Book {
 	 * @return integer value of the number of books held in the library
 	 */
 	public int getNumBooks() {
-		return numBooks;
+		return books.size();
 	}
 
 	/**
