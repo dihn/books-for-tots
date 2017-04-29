@@ -90,39 +90,39 @@ public class AddBookGUI extends JFrame{
 		
 		JMenuBar menuBar;
 		JMenu fileMenu, helpMenu;
-		JMenuItem exitItem, addBookItem, aboutItem;
+		JMenuItem closeItem, aboutItem, logoutItem;
 
 		menuBar = new JMenuBar();
 
 		fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
-
-		addBookItem = new JMenuItem("Add Book");
-		addBookItem.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-			
-		});
-		fileMenu.add(addBookItem);
-
-		exitItem = new JMenuItem("Exit");
-		exitItem.addActionListener(new ActionListener() {
+		
+		logoutItem = new JMenuItem("Logout");
+		logoutItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int n = JOptionPane.showConfirmDialog(mainPanel, "Are you sure you want to exit?", "Exit",
-						JOptionPane.YES_NO_OPTION);
-				if (n == 0) {
-					System.exit(0);
-				} else if (n == 1) {
-				}
+				Book b = new Book();
+				b.emptyBookList();
+				Login logingui = new Login();
+				logingui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				dispose();
+			}
+		});
+		fileMenu.add(logoutItem);
+
+		closeItem = new JMenuItem("Close");
+		closeItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				BooksForTotsGUI gui = new BooksForTotsGUI();
+				gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				dispose();
 			}
 
 		});
-		fileMenu.add(exitItem);
+		fileMenu.add(closeItem);
 
 		helpMenu = new JMenu("Help");
 		menuBar.add(helpMenu);
