@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -25,7 +24,7 @@ public class AddBookGUI extends JFrame {
 	private static GridBagLayout layout;
 	private static GridBagConstraints constraints;
 
-	public static JTextField authortext, titletext, releasetext;
+	public static JTextField authortext, titletext, releasetext, conditionText;
 
 	public AddBookGUI() {
 		this.setTitle("Books For Tots");
@@ -63,9 +62,7 @@ public class AddBookGUI extends JFrame {
 		JTextField releasetext = new JTextField(30);
 		JTextField loantext = new JTextField(30);
 		JTextField returntext = new JTextField(30);
-
-		String[] conditionOptions = { "Excellent", "Good", "Poor" };
-		JComboBox<String> conditionbox = new JComboBox<String>(conditionOptions);
+		JTextField conditionText = new JTextField(30);
 
 		JButton addBtn = new JButton("Add Book");
 		addBtn.addActionListener(new ActionListener() {
@@ -76,17 +73,18 @@ public class AddBookGUI extends JFrame {
 				bookTitle = titletext.getText();
 				bookAuthor = authortext.getText();
 				bookPublisher = releasetext.getText();
-				bookCondition = "Excellent";
+				bookCondition = conditionText.getText();
 				bookReleaseDate = releasetext.getText();
 				Book b = new Book();
-				if(b.checkTitleExists(bookTitle)){
+				Boolean titleExists = b.checkTitleExists(bookTitle);
+				if(!titleExists){
 					b.addNewBook(bookTitle, bookAuthor, bookPublisher, bookCondition, bookReleaseDate);
 					JOptionPane.showMessageDialog(mainPanel, "Book added", "Book Added", JOptionPane.PLAIN_MESSAGE);
 					BooksForTotsGUI gui = new BooksForTotsGUI();
 					gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					dispose();
 				} else {
-					JOptionPane.showMessageDialog(mainPanel, "Book not added. Title already exists", "Book not Added", JOptionPane.PLAIN_MESSAGE);
+					JOptionPane.showMessageDialog(mainPanel, "Book not added. Title " + bookTitle + " already exists", "Book not Added", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 
@@ -162,7 +160,7 @@ public class AddBookGUI extends JFrame {
 		mainPanel.add(conditionlbl, constraints);
 		constraints.gridwidth = 20;
 		constraints.gridx = 5;
-		mainPanel.add(conditionbox, constraints);
+		mainPanel.add(conditionText, constraints);
 		constraints.gridwidth = 1;
 		constraints.gridx = 2;
 		constraints.gridy = 4;

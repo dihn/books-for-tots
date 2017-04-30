@@ -19,7 +19,7 @@ public class CheckTitleExistsTest {
 	public void test() {
 		Book b = new Book();
 		
-		String title = "Daytime Visions";
+		String title = "test";
 		
 		assertTrue(b.checkTitleExists(title));
 	}

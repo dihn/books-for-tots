@@ -213,6 +213,7 @@ public class Book {
 	}
 
 	/**
+	 * Add a new book to the library
 	 * 
 	 * @param bookTitle
 	 * @param bookAuthor
@@ -244,9 +245,16 @@ public class Book {
 		}
 	}
 
-	public boolean checkTitleExists(String title) {
-		for (int i = 0; i < books.size(); i++) {
-			if (title.equals(books.get(i).BookTitle)) {
+	/**
+	 * Check if a title already exists in the library
+	 * 
+	 * @param title
+	 * @return boolean value if title exists or not
+	 */
+	public Boolean checkTitleExists(String title) {
+		Book b = new Book();
+		for (int i = 0; i < b.getNumBooks(); i++) {
+			if (title.equals(b.getBookTitleAtIndex(i))) {
 				return true;
 			}
 		}
@@ -254,8 +262,10 @@ public class Book {
 	}
 
 	/**
+	 * Delete a book from the library
 	 * 
 	 * @param title
+	 *            Title of book to be deleted
 	 */
 	public void deleteBook(String title) {
 		try {

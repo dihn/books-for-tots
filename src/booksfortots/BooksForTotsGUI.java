@@ -6,7 +6,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -24,7 +23,7 @@ public class BooksForTotsGUI extends JFrame {
 	private static GridBagLayout layout;
 	private static GridBagConstraints constraints;
 
-	public static JTextField authortext, titletext, releasetext;
+	public static JTextField authortext, titletext, releasetext, conditionText;
 	public static Book b = new Book();
 
 	public int currentBookNum = 0;
@@ -68,11 +67,8 @@ public class BooksForTotsGUI extends JFrame {
 		releasetext.setText(b.getBookReleaseDateAtIndex(currentBookNum));
 		JTextField loantext = new JTextField(30);
 		JTextField returntext = new JTextField(30);
-
-		String[] conditionOptions = { "Excellent", "Good", "Poor" };
-		JComboBox<String> conditionbox = new JComboBox<String>(conditionOptions);
-		String item = b.getBookConditionAtIndex(currentBookNum);
-		conditionbox.setSelectedItem(item);
+		JTextField conditionText = new JTextField(30);
+		conditionText.setText(b.getBookConditionAtIndex(currentBookNum));
 
 		JButton prevbtn = new JButton("<");
 		prevbtn.addActionListener(new ActionListener() {
@@ -84,8 +80,7 @@ public class BooksForTotsGUI extends JFrame {
 					titletext.setText(b.getBookTitleAtIndex(currentBookNum));
 					authortext.setText(b.getBookAuthorAtIndex(currentBookNum));
 					releasetext.setText(b.getBookReleaseDateAtIndex(currentBookNum));
-					String item = b.getBookConditionAtIndex(currentBookNum);
-					conditionbox.setSelectedItem(item);
+					conditionText.setText(b.getBookConditionAtIndex(currentBookNum));
 				} else {
 					JOptionPane.showMessageDialog(mainPanel, "Reached the lowest number of books", "Error",
 							JOptionPane.WARNING_MESSAGE);
@@ -104,8 +99,7 @@ public class BooksForTotsGUI extends JFrame {
 					titletext.setText(b.getBookTitleAtIndex(currentBookNum));
 					authortext.setText(b.getBookAuthorAtIndex(currentBookNum));
 					releasetext.setText(b.getBookReleaseDateAtIndex(currentBookNum));
-					String item = b.getBookConditionAtIndex(currentBookNum);
-					conditionbox.setSelectedItem(item);
+					conditionText.setText(b.getBookConditionAtIndex(currentBookNum));
 				} else {
 					JOptionPane.showMessageDialog(mainPanel, "Reached the highest number of books", "Error",
 							JOptionPane.WARNING_MESSAGE);
@@ -143,7 +137,6 @@ public class BooksForTotsGUI extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String titleToDelete = titletext.getText();
-				System.out.println(titleToDelete);
 				b.deleteBook(titleToDelete);
 				b.emptyBookList();
 				BooksForTotsGUI gui = new BooksForTotsGUI();
@@ -216,7 +209,7 @@ public class BooksForTotsGUI extends JFrame {
 		mainPanel.add(conditionlbl, constraints);
 		constraints.gridwidth = 20;
 		constraints.gridx = 5;
-		mainPanel.add(conditionbox, constraints);
+		mainPanel.add(conditionText, constraints);
 		constraints.gridwidth = 1;
 		constraints.gridx = 2;
 		constraints.gridy = 4;
