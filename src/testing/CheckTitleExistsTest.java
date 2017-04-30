@@ -5,22 +5,22 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import booksfortots.User;
+import booksfortots.Book;
 import database.DatabaseConnect;
 
-public class UserTest {
-
+public class CheckTitleExistsTest {
+	
 	@Before
 	public void setUp() throws Exception {
-		DatabaseConnect.connect("login");
+		DatabaseConnect.connect("book");
 	}
 
 	@Test
 	public void test() {
-		String username = "admin";
-		String password = "adminpass";
-		User u = new User();
-		assertTrue(u.checkLoginDetails(username, password));
+		Book b = new Book();
+		
+		String title = "Daytime Visions";
+		
+		assertTrue(b.checkTitleExists(title));
 	}
-
 }

@@ -209,10 +209,9 @@ public class Book {
 	 *            A book object
 	 */
 	public void addBook(Book book) {
-		//Book.numBooks++;
 		books.add(book);
 	}
-	
+
 	/**
 	 * 
 	 * @param bookTitle
@@ -222,12 +221,12 @@ public class Book {
 	 * @param bookReleaseDate
 	 */
 	public void addNewBook(String bookTitle, String bookAuthor, String bookPublisher, String bookCondition,
-			String bookReleaseDate){
-		try{
+			String bookReleaseDate) {
+		try {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/booksfortots", "root", "");
 			String query = "INSERT into books (BookTitle, BookAuthor, BookPublisher, BookCondition, BookReleaseDate)"
 					+ " values (?, ?, ?, ?, ?)";
-			
+
 			// create the mysql instert preparedstatement
 			PreparedStatement prepareStmt = conn.prepareStatement(query);
 			prepareStmt.setString(1, bookTitle);
@@ -235,38 +234,47 @@ public class Book {
 			prepareStmt.setString(3, bookPublisher);
 			prepareStmt.setString(4, bookCondition);
 			prepareStmt.setString(5, bookReleaseDate);
-			
+
 			prepareStmt.execute();
-			
+
 			conn.close();
 		} catch (Exception e) {
 			System.err.println("Exception!");
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
+	public boolean checkTitleExists(String title) {
+		for (int i = 0; i < books.size(); i++) {
+			if (title.equals(books.get(i).BookTitle)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/**
 	 * 
 	 * @param title
 	 */
-	public void deleteBook(String title){
-		try{
+	public void deleteBook(String title) {
+		try {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/booksfortots", "root", "");
 			String query = "DELETE FROM books WHERE BookTitle = ?";
-			
+
 			// create the mysql instert preparedstatement
 			PreparedStatement prepareStmt = conn.prepareStatement(query);
 			prepareStmt.setString(1, title);
-		
+
 			prepareStmt.execute();
-			
+
 			conn.close();
 		} catch (Exception e) {
 			System.err.println("Exception!");
 			System.err.println(e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * 
 	 */

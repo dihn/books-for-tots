@@ -19,14 +19,14 @@ import javax.swing.JTextField;
 
 import database.DatabaseConnect;
 
-public class AddBookGUI extends JFrame{
-	
+public class AddBookGUI extends JFrame {
+
 	private static final long serialVersionUID = 1L;
 	private static GridBagLayout layout;
 	private static GridBagConstraints constraints;
-	
+
 	public static JTextField authortext, titletext, releasetext;
-	
+
 	public AddBookGUI() {
 		this.setTitle("Books For Tots");
 		this.setLocationRelativeTo(null);
@@ -57,7 +57,7 @@ public class AddBookGUI extends JFrame{
 		JLabel releaselbl = new JLabel("Release Date");
 		JLabel loanlbl = new JLabel("Loan Date");
 		JLabel returnlbl = new JLabel("Return Date");
-		
+
 		JTextField titletext = new JTextField(30);
 		JTextField authortext = new JTextField(30);
 		JTextField releasetext = new JTextField(30);
@@ -66,7 +66,7 @@ public class AddBookGUI extends JFrame{
 
 		String[] conditionOptions = { "Excellent", "Good", "Poor" };
 		JComboBox<String> conditionbox = new JComboBox<String>(conditionOptions);
-		
+
 		JButton addBtn = new JButton("Add Book");
 		addBtn.addActionListener(new ActionListener() {
 
@@ -79,15 +79,19 @@ public class AddBookGUI extends JFrame{
 				bookCondition = "Excellent";
 				bookReleaseDate = releasetext.getText();
 				Book b = new Book();
-				b.addNewBook(bookTitle, bookAuthor, bookPublisher, bookCondition, bookReleaseDate);
-				JOptionPane.showMessageDialog(mainPanel, "Book added","Book Added", JOptionPane.PLAIN_MESSAGE);
-				BooksForTotsGUI gui = new BooksForTotsGUI();
-				gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				dispose();
+				if(b.checkTitleExists(bookTitle)){
+					b.addNewBook(bookTitle, bookAuthor, bookPublisher, bookCondition, bookReleaseDate);
+					JOptionPane.showMessageDialog(mainPanel, "Book added", "Book Added", JOptionPane.PLAIN_MESSAGE);
+					BooksForTotsGUI gui = new BooksForTotsGUI();
+					gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(mainPanel, "Book not added. Title already exists", "Book not Added", JOptionPane.PLAIN_MESSAGE);
+				}
 			}
-			
+
 		});
-		
+
 		JMenuBar menuBar;
 		JMenu fileMenu, helpMenu;
 		JMenuItem closeItem, aboutItem, logoutItem;
@@ -96,7 +100,7 @@ public class AddBookGUI extends JFrame{
 
 		fileMenu = new JMenu("File");
 		menuBar.add(fileMenu);
-		
+
 		logoutItem = new JMenuItem("Logout");
 		logoutItem.addActionListener(new ActionListener() {
 
@@ -126,7 +130,7 @@ public class AddBookGUI extends JFrame{
 
 		helpMenu = new JMenu("Help");
 		menuBar.add(helpMenu);
-		
+
 		aboutItem = new JMenuItem("About");
 		helpMenu.add(aboutItem);
 		aboutItem.addActionListener(new ActionListener() {
@@ -183,13 +187,12 @@ public class AddBookGUI extends JFrame{
 		constraints.gridwidth = 1;
 		constraints.gridx = 2;
 		constraints.gridy = 7;
-		mainPanel.add(addBtn,constraints);
-		
+		mainPanel.add(addBtn, constraints);
 
 		this.add(mainPanel);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
-		
+
 	}
 
 }

@@ -17,10 +17,12 @@ public class DatabaseConnect {
 
 	/**
 	 * Connect to a specific type of database based on a String value
-	 * @param database string value of the type of database to be connected to
+	 * 
+	 * @param database
+	 *            string value of the type of database to be connected to
 	 */
 	public static void connect(String database) {
-		if(database.equals("book")) {
+		if (database.equals("book")) {
 			try {
 				Connection conn = DriverManager.getConnection(DB_URL, user, password);
 				PreparedStatement statement = conn.prepareStatement(
@@ -47,7 +49,7 @@ public class DatabaseConnect {
 				sqlException.printStackTrace();
 			}
 		}
-		if(database.equals("login")) {
+		if (database.equals("login")) {
 			try {
 				Connection conn = DriverManager.getConnection(DB_URL, user, password);
 				PreparedStatement statement = conn.prepareStatement("SELECT Username, Password FROM users");
@@ -57,7 +59,7 @@ public class DatabaseConnect {
 
 					String username = resultSet.getString("Username");
 					String password = resultSet.getString("Password");
-					
+
 					User u = new User(username, password);
 					u.addUser(u);
 				}
@@ -65,7 +67,7 @@ public class DatabaseConnect {
 				resultSet.close();
 				statement.close();
 				conn.close();
-				
+
 			} catch (SQLException sqlException) {
 				sqlException.printStackTrace();
 			}
