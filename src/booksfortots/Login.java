@@ -1,8 +1,6 @@
 package booksfortots;
 
-import java.awt.Color;
 import java.awt.Container;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -124,31 +122,6 @@ public class Login extends JFrame {
 		});
 
 		this.setJMenuBar(menuBar);
-
-		Font font1 = new Font("Verdana", Font.BOLD, 30);
-		userlbl.setFont(font1);
-		userlbl.setForeground(Color.CYAN);
-
-		Font font2 = new Font("Verdana", Font.BOLD, 30);
-		passlbl.setFont(font2);
-		passlbl.setForeground(Color.CYAN);
-
-		Font font3 = new Font("Verdana", Font.BOLD, 25);
-		logbtn.setFont(font3);
-		logbtn.setForeground(Color.CYAN);
-		logbtn.setBackground(Color.BLACK);
-
-		Font font4 = new Font("Verdana", Font.BOLD, 25);
-		cancelbtn.setFont(font4);
-		cancelbtn.setForeground(Color.CYAN);
-		cancelbtn.setBackground(Color.BLACK);
-
-		menuBar.setBackground(Color.BLACK);
-		menuBar.setForeground(Color.CYAN);
-		fileMenu.setForeground(Color.CYAN);
-		helpMenu.setForeground(Color.CYAN);
-
-		myPanel.setBackground(Color.darkGray);
 
 		logbtn.addActionListener(new ActionListener() {
 

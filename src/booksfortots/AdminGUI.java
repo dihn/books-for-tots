@@ -178,8 +178,6 @@ public class AdminGUI extends JFrame implements ActionListener {
 			passText.setEnabled(false);
 			saveButton.setEnabled(false);
 			cancelButton.setEnabled(false);
-			// userText.setText("");
-			// passText.setText("");
 		}
 
 		if (e.getSource() == cancelButton) {
