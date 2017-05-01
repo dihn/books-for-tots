@@ -161,9 +161,16 @@ public class Login extends JFrame {
 				boolean loginCheck = u.checkLoginDetails(userIn, passIn);
 
 				if (loginCheck == true) {
-					dispose();
-					BooksForTotsGUI gui = new BooksForTotsGUI();
-					gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					if (userIn.equals("admin")) {
+						dispose();
+						AdminGUI gui = new AdminGUI();
+						gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					} else {
+						dispose();
+						BooksForTotsGUI gui = new BooksForTotsGUI();
+						gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					}
+
 				}
 			}
 
